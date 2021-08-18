@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.spring.entity.Customer;
 import com.example.spring.repository.CustomerRepository;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/data")
@@ -28,6 +30,11 @@ public class CustommerController {
 	@GetMapping("/{id}")
 	public Optional<Customer> getIterable(@PathVariable Long id) {
 		return crepository.findById(id);
+	}
+	@GetMapping("/name/{lastName}")
+	public List<Customer> findByLastName(@PathVariable String lastName){
+		List<Customer> list = crepository.findByLastName(lastName);
+		return list;
 	}
 	
 	
