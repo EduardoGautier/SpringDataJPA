@@ -1,43 +1,44 @@
 package com.example.spring.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "data")
+@JsonIgnoreProperties
 public class Customer {
 
-  @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
-  private Long id;
-  private String firstName;
-  private String lastName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  protected Customer() {}
+    @Column(name = "firstName")
+    private String firstName;
 
-  public Customer(String firstName, String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+    @Column(name = "lastName")
+    private String lastName;
 
-  @Override
-  public String toString() {
-    return String.format(
-        "Customer[id=%d, firstName='%s', lastName='%s']",
-        id, firstName, lastName);
-  }
+    @Column(name = "email")
+    private String email;
 
-  public Long getId() {
-    return id;
-  }
+    @Column(name = "cpf")
+    private String cpf;
 
-  public String getFirstName() {
-    return firstName;
-  }
+    @Column(name = "address")
+    private String address;
 
-  public String getLastName() {
-    return lastName;
-  }
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "birthDate")
+    private String birthDate;
+
 }
