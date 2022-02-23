@@ -21,21 +21,21 @@ public class SpringDataTest {
 	
 	@Test
 	public void TestData() throws Exception {
-		mvc.perform(get("/data/"))
+		mvc.perform(get("/data/customers/"))
 			.andExpect(status().isOk())
-			.andExpect(content().json("[{\"id\":1,\"firstName\":\"Jack\",\"lastName\":\"Bauer\"},{\"id\":2,\"firstName\":\"Chloe\",\"lastName\":\"O'Brian\"},{\"id\":3,\"firstName\":\"Kim\",\"lastName\":\"Bauer\"},{\"id\":4,\"firstName\":\"David\",\"lastName\":\"Palmer\"},{\"id\":5,\"firstName\":\"Michelle\",\"lastName\":\"Dessler\"}]"));
+			.andExpect(content().json("[{\"id\":1,\"firstName\":\"Jack\",\"lastName\":\"Bauer\"},{\"id\":2,\"firstName\":\"Chloe\",\"lastName\":\"O'Brian\"},{\"id\":3,\"firstName\":\"Kim\",\"lastName\":\"Bauer\"},{\"id\":4,\"firstName\":\"David\",\"lastName\":\"Palmer\"},{\"id\":5,\"firstName\":\"Michelle\",\"lastName\":\"Dessler\"},{\"id\":6,\"firstName\":\"Diabo\",\"lastName\":\"A4\"}]"));
 	}
 	
 	@Test
 	void testControllerFindById() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/data/2"))
+		mvc.perform(MockMvcRequestBuilders.get("/data/customers/2"))
 				.andExpect(status().isOk())
 				.andExpect(content().string("{\"id\":2,\"firstName\":\"Chloe\",\"lastName\":\"O'Brian\"}"));
 	}
 	
 	@Test
 	void testControllerFindByLastName() throws Exception {
-		mvc.perform(MockMvcRequestBuilders.get("/data/name/Palmer"))
+		mvc.perform(MockMvcRequestBuilders.get("/data/customers/name/Palmer"))
 			.andExpect(status().isOk())
 			.andExpect(content().string("[{\"id\":4,\"firstName\":\"David\",\"lastName\":\"Palmer\"}]"));
 	}
